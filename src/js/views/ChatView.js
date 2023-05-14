@@ -1,15 +1,15 @@
 import { MessageType } from "../constants/MessageType.js";
 
 export class ChatView {
-  constructor(controller) {
-    this.controller = controller;
-
+  constructor() {
     this.$chatBox = document.querySelector(".chat-box");
     this.$messages = document.querySelector(".chat-box .messages");
     this.$inputMessage = document.querySelector(".bottom-panel input");
     this.$sendButton = document.querySelector(".bottom-panel button");
 
     this.$typingMessage = null;
+
+    this.controller = null;
   }
 
   assistantSaying(message) {
@@ -42,6 +42,14 @@ export class ChatView {
     return $message;
   }
 
+  gotHumanMessage() {
+    this.humanSaid(this.$inputMessage.value);
+
+    this.controller?.play(this.$inputMessage.value);
+
+    this.$inputMessage.value = "";
+  }
+
   humanSaid(message) {
     const $message = this.createMessageView(MessageType.OUTGOING, message);
 
@@ -52,6 +60,10 @@ export class ChatView {
 
   scroll() {
     this.$chatBox.scroll(0, this.$messages.clientHeight);
+  }
+
+  setController(controller) {
+    this.controller = controller;
   }
 
   typingMessage() {
@@ -80,16 +92,12 @@ export class ChatView {
   initListeners() {
     this.$inputMessage.addEventListener("keydown", (ev) => {
       if (ev.key === "Enter") {
-        this.humanSaid(this.$inputMessage.value);
-
-        this.$inputMessage.value = "";
+        this.gotHumanMessage();
       }
     });
 
     this.$sendButton.addEventListener("click", () => {
-      this.humanSaid(this.$inputMessage.value);
-
-      this.$inputMessage.value = "";
+        this.gotHumanMessage();
     });
   }
 }
