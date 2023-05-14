@@ -1,0 +1,37 @@
+{
+  "name": "chat-prototype",
+  "version": "1.0.0",
+  "description": "It is a R&D project where autor tryed to use Cypress for implementing e2e and unit tests",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "webpack-dev-server --config ./build_configurations/webpack.config.js --mode development --devtool inline-source-map",
+    "test": "cypress run",
+    "build": "webpack --config ./build_configurations/webpack.config.js --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popelnicky/chat-html-css-js.git"
+  },
+  "keywords": [
+    "javascript",
+    "cypress",
+    "e2e",
+    "unit",
+    "tests"
+  ],
+  "author": "popelnicky@live.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/popelnicky/chat-html-css-js/issues"
+  },
+  "homepage": "https://github.com/popelnicky/chat-html-css-js#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "cypress": "^12.12.0",
+    "eslint": "^8.40.0",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  }
+}
